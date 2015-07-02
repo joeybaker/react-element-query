@@ -1,0 +1,13 @@
+@import "../../_entry/";
+
+.header {
+  color: white;
+}
+
+.small {
+  background: blue;
+}
+
+.large {
+  background: red;
+}

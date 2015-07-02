@@ -1,0 +1,6 @@
+{
+  "plugins": [
+    "closure-elimination"
+  ]
+  , "stage": 0
+}
