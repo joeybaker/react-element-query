@@ -10,14 +10,22 @@ This is performant, and works on both the server and the client.
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
 
-- [Install](#install)
-- [Usage](#usage)
-- [Methods](#methods)
-- [Events](#events)
-- [Tests](#tests)
-- [Developing](#developing)
-  - [Requirements](#requirements)
-- [License](#license)
+  - [Install](#install)
+  - [Usage](#usage)
+- [I have a `.small` when over 150px and `.large` when over 300px](#i-have-a-small-when-over-150px-and-large-when-over-300px)
+  - [Props](#props)
+    - [`<Array> sizes` **Required**](#array-sizes-required)
+    - [`<Function> makeClassName`](#function-makeclassname)
+    - [`<String> default`](#string-default)
+  - [Methods](#methods)
+    - [`static` ElementQuery.register `(<React Element> element, <Array> sizes[, <Function> onResize])`](#static-elementqueryregister-react-element-element-array-sizes-function-onresize)
+    - [`static` ElementQuery.unregister `(<React Element> element)`](#static-elementqueryunregister-react-element-element)
+    - [`static` ElementQuery.listen()](#static-elementquerylisten)
+    - [`static` ElementQuery.unregister()](#static-elementqueryunregister)
+  - [Developing](#developing)
+    - [Requirements](#requirements)
+    - [Tests](#tests)
+  - [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
