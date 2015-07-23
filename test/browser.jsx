@@ -2,6 +2,21 @@ import test from 'tape'
 import ElementQuery from '../index.jsx'
 import React from 'react'
 import testTree from 'react-test-tree'
+import sinon from 'sinon'
+
+// TODO: move move me to a module like `react-tape`, and maybe have it be a
+// browserify transform?
+// proptype failures will go to console.warn, fail the tests when one is seen
+test('test setup', (t) => {
+  console._warn = console.warn
+  console.warn = (...args) => {
+    console._warn.apply(console, args)
+    t.fail(args)
+  }
+  t.pass('ok')
+  t.end()
+})
+
 
 test('browser render', (t) => {
   const large = {name: 'large', width: 300}
@@ -26,7 +41,7 @@ test('browser render', (t) => {
     , 'matches the min width for the smallest size, not going to a larger size'
   )
 
-  const largeTree = testTree(<div style={{width: 400}} refCollection="container"><ElementQuery sizes={sizes}><h1 ref="title">hi</h1></ElementQuery></div>, {mount: true})
+  const largeTree = testTree(<div style={{width: 400}} refCollection="container"><ElementQuery sizes={sizes}><h1>hi</h1></ElementQuery></div>, {mount: true})
   const largeEl = largeTree.container[0].element
 
   t.equal(
