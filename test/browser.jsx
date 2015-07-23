@@ -37,3 +37,30 @@ test('browser render', (t) => {
 
   t.end()
 })
+
+test('fails on invalid sizes', (t) => {
+  const warnStub = sinon.stub()
+  const _warn = console.warn
+  console.warn = warnStub
+
+  const nonNumberSizes = [{name: 'hi', width: 'not a number'}]
+  testTree(<ElementQuery sizes={nonNumberSizes}><span>hi</span></ElementQuery>, {mount: true})
+
+  t.ok(
+    warnStub.calledOnce
+    , 'warns when a non-number width is passed'
+  )
+  warnStub.reset()
+
+  const zeroWidth = [{name: 'hi', width: 0}]
+  testTree(<ElementQuery sizes={zeroWidth}><span>hi</span></ElementQuery>, {mount: true})
+
+  t.ok(
+    warnStub.calledOnce
+    , 'warns when a `0` width is passed'
+  )
+  warnStub.reset()
+
+  console.warn = _warn
+  t.end()
+})

@@ -3,6 +3,7 @@ import {addons} from 'react/addons'
 import identity from 'lodash/utility/identity'
 import sortBy from 'lodash/collection/sortBy'
 import first from 'lodash/array/first'
+import isNumber from 'lodash/lang/isNumber'
 import raf from 'raf'
 const {shouldComponentUpdate} = addons.PureRenderMixin
 const {cloneWithProps} = addons
@@ -138,8 +139,17 @@ ElementQuery.propTypes = {
   children: PropTypes.element.isRequired
   , 'default': PropTypes.string
   , sizes: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string
-    , width: PropTypes.number
+    name: PropTypes.string.isRequired
+    , width: (props, propName, componentName) => {
+      const size = props[propName]
+      if (!isNumber(size)) {
+        return new Error(`${componentName} received a width of \`${size}\` for \`${props.name}\`. A number was expected.`)
+      }
+
+      if (size === 0) {
+        return new Error(`${componentName} received a width of \`${size}\` for \`${props.name}\`. Widths are min-widths, and should be treated as "mobile-first". The default state can be set with the \`default\` prop, or even better with the "default" styles in CSS.`)
+      }
+    }
   })).isRequired
   , makeClassName: PropTypes.func
 }
