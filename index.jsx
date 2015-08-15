@@ -21,7 +21,7 @@ export default class ElementQuery extends Component {
   }
 
   componentDidMount () {
-    if (isBrowser) ElementQuery.sizeComponent(this, this.state.sizes)
+    ElementQuery.sizeComponent(this, this.state.sizes)
   }
 
   componentWillReceiveProps (newProps) {
@@ -52,6 +52,8 @@ export default class ElementQuery extends Component {
   }
 
   static register (component, sizes, onResize) {
+    if (!isBrowser) return
+
     ElementQuery._componentMap.set(component, {
       sizes
       // if a custom onResize callback is passed, e.g. using this lib just for
@@ -59,10 +61,13 @@ export default class ElementQuery extends Component {
       // component
       , onResize: onResize || ElementQuery.sizeComponent
     })
+
     if (!ElementQuery._isListening && isBrowser) ElementQuery.listen()
   }
 
   static unregister (component) {
+    if (!isBrowser) return
+
     ElementQuery._componentMap.delete(component)
     if (!ElementQuery._componentMap.size && isBrowser) ElementQuery.unListen()
   }
