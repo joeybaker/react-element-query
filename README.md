@@ -1,10 +1,10 @@
 # react-element-query [![NPM version][npm-image]][npm-url] [![Dependency Status][daviddm-url]][daviddm-image] [![Build Status][travis-image]][travis-url]
 
-Once you start thinking in elements, media queries, which are reliant on the size of the whole screen don't work well. Elements are frequently not the full screen-width. Element queries solve this, but CSS [won't have element queries for a while](http://discourse.specifiction.org/t/element-queries/26).
+Once you start thinking in components, media queries, which are reliant on the size of the whole screen, don't work well because components are frequently not the full screen-width.
 
-[eq.js](https://github.com/snugug/eq.js) does a good job, but it doesn't play nicely with React and react provides some nice performance and API benefits.
+Element queries solve this, but CSS [won't have element queries for a while](http://discourse.specifiction.org/t/element-queries/26). [eq.js](https://github.com/snugug/eq.js) does a good job, but it doesn't play nicely with React. Besides which, using the React render pipeline has some nice performance and API benefits.
 
-This is performant, and works on both the server and the client.
+This component is performant, and works on both the server and the client.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
