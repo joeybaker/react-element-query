@@ -12,7 +12,6 @@ This component is performant, and works on both the server and the client.
 
   - [Install](#install)
   - [Usage](#usage)
-- [I have a `.small` when over 150px and `.large` when over 300px](#i-have-a-small-when-over-150px-and-large-when-over-300px)
   - [Props](#props)
     - [`<Array> sizes` **Required**](#array-sizes-required)
     - [`<Function> makeClassName`](#function-makeclassname)
@@ -37,6 +36,7 @@ npm i -S react-element-query
 
 
 ## Usage
+
 ```js
   import React from 'react'
   import ElementQuery from 'element-query'
