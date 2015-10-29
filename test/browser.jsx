@@ -42,7 +42,7 @@ test('browser render', (t) => {
   )
 
   const largeTree = testTree(<div style={{width: 400}} refCollection="container"><ElementQuery sizes={sizes}><h1>hi</h1></ElementQuery></div>, {mount: true})
-  const largeEl = largeTree.container[0].element
+  const largeEl = largeTree.get('container')[0].element
 
   t.equal(
     largeEl.state.size
