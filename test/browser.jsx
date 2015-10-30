@@ -8,9 +8,9 @@ import sinon from 'sinon'
 // browserify transform?
 // proptype failures will go to console.warn, fail the tests when one is seen
 test('test setup', (t) => {
-  console._warn = console.warn
-  console.warn = (...args) => {
-    console._warn.apply(console, args)
+  console._error = console.error
+  console.error = (...args) => {
+    console._error.apply(console, args)
     t.fail(args)
   }
   t.pass('ok')
@@ -26,7 +26,11 @@ test('browser render', (t) => {
   // resize the window to be large so we're sure that's not affecting the elements
   window.resizeTo(1000, 50)
 
-  const smallTree = testTree(<div style={{width: 200}} refCollection="container"><ElementQuery sizes={sizes}><h1>hi</h1></ElementQuery></div>, {mount: true})
+  const smallTree = testTree((<div style={{width: 200}} refCollection="container">
+    <ElementQuery sizes={sizes}>
+      <h1>hi</h1>
+    </ElementQuery>
+  </div>), {mount: true})
   const smallEl = smallTree.container[0].element
 
   t.equal(
@@ -54,28 +58,28 @@ test('browser render', (t) => {
 })
 
 test('fails on invalid sizes', (t) => {
-  const warnStub = sinon.stub()
-  const _warn = console.warn
-  console.warn = warnStub
+  const errorStub = sinon.stub()
+  const _error = console.error
+  console.error = errorStub
 
   const nonNumberSizes = [{name: 'hi', width: 'not a number'}]
   testTree(<ElementQuery sizes={nonNumberSizes}><span>hi</span></ElementQuery>, {mount: true})
 
   t.ok(
-    warnStub.calledOnce
-    , 'warns when a non-number width is passed'
+    errorStub.calledOnce
+    , 'errors when a non-number width is passed'
   )
-  warnStub.reset()
+  errorStub.reset()
 
   const zeroWidth = [{name: 'hi', width: 0}]
   testTree(<ElementQuery sizes={zeroWidth}><span>hi</span></ElementQuery>, {mount: true})
 
   t.ok(
-    warnStub.calledOnce
-    , 'warns when a `0` width is passed'
+    errorStub.calledOnce
+    , 'errors when a `0` width is passed'
   )
-  warnStub.reset()
+  errorStub.reset()
 
-  console.warn = _warn
+  console.error = _error
   t.end()
 })
