@@ -73,6 +73,7 @@
     "react": "^0.14.1",
     "react-a11y": "^0.2.6",
     "react-test-tree": "^1.0.0-rc1",
+    "react-dom": "^0.14.1",
     "sinon": "^1.12.2",
     "smokestack": "^3.2.0",
     "smokestack-watch": "^0.4.1",
