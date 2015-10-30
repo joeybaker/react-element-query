@@ -19,7 +19,7 @@
   ],
   "scripts": {
     "start": "f () { node dev.js ${@-example} | garnish; }; f",
-    "test": "npm run -s test-browser && npm run -s test-server",
+    "test": "npm run -s test-server && npm run -s test-browser",
     "test-browser": "browserify -t babelify test/browser.jsx | tap-closer | smokestack -b firefox | tap-spec",
     "test-server": "babel-tape-runner test/server.jsx | tap-spec",
     "tdd-server": "nodemon -x npm -i node_modules/ -e js,jsx -- run -s test-server",
