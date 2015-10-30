@@ -26,12 +26,12 @@ test('browser render', (t) => {
   // resize the window to be large so we're sure that's not affecting the elements
   window.resizeTo(1000, 50)
 
-  const smallTree = testTree((<div style={{width: 200}} refCollection="container">
+  const smallTree = testTree((<div style={{width: 200}} testRefCollection="container">
     <ElementQuery sizes={sizes}>
       <h1>hi</h1>
     </ElementQuery>
-  </div>), {mount: true})
-  const smallEl = smallTree.container[0].element
+  </div>), {mount: true, wrap: true})
+  const smallEl = smallTree.get('container')[0].element
 
   t.equal(
     smallEl.state.sizes[0].width
@@ -45,7 +45,7 @@ test('browser render', (t) => {
     , 'matches the min width for the smallest size, not going to a larger size'
   )
 
-  const largeTree = testTree(<div style={{width: 400}} refCollection="container"><ElementQuery sizes={sizes}><h1>hi</h1></ElementQuery></div>, {mount: true})
+  const largeTree = testTree(<div style={{width: 400}} testRefCollection="container"><ElementQuery sizes={sizes}><h1>hi</h1></ElementQuery></div>, {mount: true, wrap: true})
   const largeEl = largeTree.get('container')[0].element
 
   t.equal(
