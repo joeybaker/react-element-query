@@ -1,4 +1,5 @@
 import React, {PropTypes, Component, Children, cloneElement} from 'react'
+import {findDOMNode} from 'react-dom'
 import identity from 'lodash/utility/identity'
 import sortBy from 'lodash/collection/sortBy'
 import first from 'lodash/array/first'
@@ -11,7 +12,7 @@ const isBrowser = typeof window !== 'undefined'
 @pureRender
 export default class ElementQuery extends Component {
   static propTypes = {
-    children: PropTypes.element.isRequired
+    children: PropTypes.node.isRequired
     , default: PropTypes.string
     , sizes: PropTypes.arrayOf(PropTypes.shape({
       name: PropTypes.string.isRequired
@@ -102,7 +103,7 @@ static _componentMap = new Map()
   }
 
   static sizeComponent (component, sizes) {
-    const el = React.findDOMNode(component)
+    const el = findDOMNode(component)
     const width = el.clientWidth
     const smallestSize = first(sizes)
 
@@ -152,6 +153,10 @@ static _componentMap = new Map()
       : this.props.default
     const className = size ? this.props.makeClassName(size) : ''
     const makeChild = ElementQuery.makeChild
+    const {children} = this.props
+    const child = Array.isArray(children) && Children.count(children) === 1
+      ? children[0]
+      : children
 
     // because we're going to just apply the className onto the child, we can
     // only accept one. React doesn't let us return an array of children.
@@ -159,6 +164,6 @@ static _componentMap = new Map()
     // like real element queries, this enables the user to do things like wrap
     // an `<li>` in an element query and not break HTML semantics, or use
     // element query and not break expectations around things like flexbox.
-    return makeChild(Children.only(this.props.children), className)
+    return makeChild(Children.only(child), className)
   }
 }
