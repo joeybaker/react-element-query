@@ -87,7 +87,7 @@
     "react-dom": ">=0.14.1"
   },
   "dependencies": {
-    "lodash": "^3.10.0",
+    "lodash": "^3.10.1",
     "pure-render-decorator": "^0.2.0",
     "raf": "^3.0.0"
   }
