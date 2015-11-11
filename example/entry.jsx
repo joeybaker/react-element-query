@@ -2,6 +2,12 @@ import React from 'react'
 import ElementQuery from '../index.jsx'
 import a11y from 'react-a11y'
 
+const WIDTH_LARGE = 500
+const WIDTH_SMALL = 300
+const WIDTH_TINY = 100
+const SIZE_LARGE = 'large'
+const SIZE_SMALL = 'small'
+
 // expose React for debugging
 window.React = React
 a11y(React)
@@ -9,10 +15,10 @@ a11y(React)
 window.ElementQuery = ElementQuery
 
 const app = document.getElementById('app')
-const el1 = (<ElementQuery sizes={[{name: 'large', width: 500}, {name: 'small', width: 300}]}>
+const el1 = (<ElementQuery sizes={[{name: SIZE_LARGE, width: WIDTH_LARGE}, {name: SIZE_SMALL, width: WIDTH_SMALL}]}>
     <h1 className="header">300px and 500px breakpoints</h1>
   </ElementQuery>)
-const el2 = (<ElementQuery sizes={[{name: 'large', width: 300}, {name: 'small', width: 100}]} default="large">
+const el2 = (<ElementQuery sizes={[{name: SIZE_LARGE, width: WIDTH_SMALL}, {name: SIZE_SMALL, width: WIDTH_TINY}]} default="large">
       <h1>300px and 100px breakpoints</h1>
     </ElementQuery>)
 

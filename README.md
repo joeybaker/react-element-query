@@ -11,6 +11,7 @@ This component is performant, and works on both the server and the client.
 **Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
 
   - [Install](#install)
+    - [React 0.13](#react-013)
   - [Usage](#usage)
   - [Props](#props)
     - [`<Array> sizes` **Required**](#array-sizes-required)
@@ -32,6 +33,13 @@ This component is performant, and works on both the server and the client.
 
 ```sh
 npm i -S react-element-query
+```
+
+### React 0.13
+Version 2.0 and greater supports React 0.14. If you need react 0.13 compatibility, install version 1.x.
+
+```sh
+npm i -S react-element-query@1
 ```
 
 

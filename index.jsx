@@ -1,16 +1,44 @@
-import React, {PropTypes, Component, Children} from 'react'
-import {addons} from 'react/addons'
+import React, {PropTypes, Component, Children, cloneElement} from 'react'
+import {findDOMNode} from 'react-dom'
 import identity from 'lodash/utility/identity'
 import sortBy from 'lodash/collection/sortBy'
 import first from 'lodash/array/first'
 import isNumber from 'lodash/lang/isNumber'
 import raf from 'raf'
-const {shouldComponentUpdate} = addons.PureRenderMixin
-const {cloneWithProps} = addons
+import pureRender from 'pure-render-decorator'
 
 const isBrowser = typeof window !== 'undefined'
 
+@pureRender
 export default class ElementQuery extends Component {
+  static propTypes = {
+    children: PropTypes.node.isRequired
+    , default: PropTypes.string
+    , sizes: PropTypes.arrayOf(PropTypes.shape({
+      name: PropTypes.string.isRequired
+      , width: (props, propName, componentName) => {
+          const size = props[propName]
+          if (!isNumber(size)) {
+            return new Error(`${componentName} received a width of \`${size}\` for \`${props.name}\`. A number was expected.`)
+          }
+
+          if (size === 0) {
+            return new Error(`${componentName} received a width of \`${size}\` for \`${props.name}\`. Widths are min-widths, and should be treated as "mobile-first". The default state can be set with the \`default\` prop, or even better with the "default" styles in CSS.`)
+          }
+        }
+    })).isRequired
+    , makeClassName: PropTypes.func
+  }
+
+  static defaultProps = {
+    // if no default is defined, assume no className. This is the default browser
+    // behavior
+    default: ''
+    , sizes: []
+    , makeClassName: identity
+    , children: <span />
+  }
+
   constructor (props) {
     super(props)
     this.state = {size: props.default, sizes: ElementQuery.sortSizes(this.props.sizes)}
@@ -28,17 +56,13 @@ export default class ElementQuery extends Component {
     this.setState({sizes: ElementQuery.sortSizes(newProps.sizes)})
   }
 
-  // use the pure-render mixin without the mixin. This allows us to use es6
-  // classes and avoid "magic" code. NOTE: if this component is used directly
-  // by react-router, you should delete it, otherwise, the <Link> component will
-  // not cause a re-render
-  shouldComponentUpdate (...args) {
-    return shouldComponentUpdate.apply(this, args)
-  }
-
   componentWillUnmount () {
     ElementQuery.unregister(this)
   }
+
+static _isListening = false
+
+static _componentMap = new Map()
 
   // use only one global listener … for perf!
   static listen () {
@@ -79,7 +103,7 @@ export default class ElementQuery extends Component {
   }
 
   static sizeComponent (component, sizes) {
-    const el = React.findDOMNode(component)
+    const el = findDOMNode(component)
     const width = el.clientWidth
     const smallestSize = first(sizes)
 
@@ -115,7 +139,7 @@ export default class ElementQuery extends Component {
   static makeChild (child, className) {
     // just add our new class name onto the chilren, this alleviates the need to
     // create a wrapper div
-    return cloneWithProps(child, {className})
+    return cloneElement(child, {className})
   }
 
   static onResize () {
@@ -129,6 +153,10 @@ export default class ElementQuery extends Component {
       : this.props.default
     const className = size ? this.props.makeClassName(size) : ''
     const makeChild = ElementQuery.makeChild
+    const {children} = this.props
+    const child = Array.isArray(children) && Children.count(children) === 1
+      ? children[0]
+      : children
 
     // because we're going to just apply the className onto the child, we can
     // only accept one. React doesn't let us return an array of children.
@@ -136,38 +164,6 @@ export default class ElementQuery extends Component {
     // like real element queries, this enables the user to do things like wrap
     // an `<li>` in an element query and not break HTML semantics, or use
     // element query and not break expectations around things like flexbox.
-    return makeChild(Children.only(this.props.children), className)
+    return makeChild(Children.only(child), className)
   }
 }
-
-ElementQuery.propTypes = {
-  children: PropTypes.element.isRequired
-  , 'default': PropTypes.string
-  , sizes: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired
-    , width: (props, propName, componentName) => {
-      const size = props[propName]
-      if (!isNumber(size)) {
-        return new Error(`${componentName} received a width of \`${size}\` for \`${props.name}\`. A number was expected.`)
-      }
-
-      if (size === 0) {
-        return new Error(`${componentName} received a width of \`${size}\` for \`${props.name}\`. Widths are min-widths, and should be treated as "mobile-first". The default state can be set with the \`default\` prop, or even better with the "default" styles in CSS.`)
-      }
-    }
-  })).isRequired
-  , makeClassName: PropTypes.func
-}
-
-ElementQuery.defaultProps = {
-  // if no default is defined, assume no className. This is the default browser
-  // behavior
-  'default': ''
-  , sizes: []
-  , makeClassName: identity
-  , children: <span />
-}
-
-ElementQuery._isListening = false
-
-ElementQuery._componentMap = new Map()
