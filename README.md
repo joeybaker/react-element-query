@@ -35,6 +35,13 @@ This is performant, and works on both the server and the client.
 npm i -S react-element-query
 ```
 
+### React 0.13
+Version 2.0 and greater supports React 0.14. If you need react 0.13 compatibility, install version 1.x.
+
+```sh
+npm i -S react-element-query@1
+```
+
 
 ## Usage
 ```js
