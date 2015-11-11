@@ -11,6 +11,7 @@ This is performant, and works on both the server and the client.
 **Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
 
   - [Install](#install)
+    - [React 0.13](#react-013)
   - [Usage](#usage)
 - [I have a `.small` when over 150px and `.large` when over 300px](#i-have-a-small-when-over-150px-and-large-when-over-300px)
   - [Props](#props)
