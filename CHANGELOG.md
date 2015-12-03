@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.0.1 | 2015-12-03
+* fix: Children merge classNames, not replace
+* internal: update nsp
+
 ## v2.0.0 | 2015-11-11
 * change: update for react 0.14
 * change: deps updated, including major updates
@@ -23,6 +27,7 @@ server-side rendering. Use the `default` prop or just "mobile-first" CSS.
 
 ## v1.0.0 | 2015-07-09
 Init
+
 
 
 
