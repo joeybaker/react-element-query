@@ -139,7 +139,12 @@ static _componentMap = new Map()
   static makeChild (child, className) {
     // just add our new class name onto the chilren, this alleviates the need to
     // create a wrapper div
-    return cloneElement(child, {className})
+    const classNames = []
+    const existingClassName = child.props.className
+    if (existingClassName) classNames.push(existingClassName)
+    if (className) classNames.push(className)
+
+    return cloneElement(child, {className: classNames.join(' ')})
   }
 
   static onResize () {
