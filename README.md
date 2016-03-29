@@ -48,7 +48,7 @@ npm i -S react-element-query@1
 
 ```js
   import React from 'react'
-  import ElementQuery from 'element-query'
+  import ElementQuery from 'react-element-query'
   React.render((<ElementQuery
     sizes={[{name: 'large', width: 300}, {name: 'small', width: 150}]}
     >
