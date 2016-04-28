@@ -1,9 +1,9 @@
 import React, {PropTypes, Component, Children, cloneElement} from 'react'
 import {findDOMNode} from 'react-dom'
-import identity from 'lodash/utility/identity'
-import sortBy from 'lodash/collection/sortBy'
-import first from 'lodash/array/first'
-import isNumber from 'lodash/lang/isNumber'
+import identity from 'lodash.identity'
+import sortBy from 'lodash.sortby'
+import first from 'lodash.first'
+import isNumber from 'lodash.isnumber'
 import raf from 'raf'
 import pureRender from 'pure-render-decorator'
 
