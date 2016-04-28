@@ -51,6 +51,10 @@ export default class ElementQuery extends Component {
 
   componentDidMount () {
     ElementQuery.sizeComponent(this, this.state.sizes)
+    // wait a few frames then check sizes again
+    raf(() => raf(() => {
+      ElementQuery.sizeComponent(this, this.state.sizes)
+    }))
   }
 
   componentWillReceiveProps (newProps) {
