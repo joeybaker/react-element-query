@@ -1,9 +1,9 @@
 import React, {PropTypes, Component, Children, cloneElement} from 'react'
 import {findDOMNode} from 'react-dom'
-import identity from 'lodash/utility/identity'
-import sortBy from 'lodash/collection/sortBy'
-import first from 'lodash/array/first'
-import isNumber from 'lodash/lang/isNumber'
+import identity from 'lodash.identity'
+import sortBy from 'lodash.sortby'
+import first from 'lodash.first'
+import isNumber from 'lodash.isnumber'
 import raf from 'raf'
 import pureRender from 'pure-render-decorator'
 
@@ -25,6 +25,7 @@ export default class ElementQuery extends Component {
           if (size === 0) {
             return new Error(`${componentName} received a width of \`${size}\` for \`${props.name}\`. Widths are min-widths, and should be treated as "mobile-first". The default state can be set with the \`default\` prop, or even better with the "default" styles in CSS.`)
           }
+          return null
         }
     })).isRequired
     , makeClassName: PropTypes.func
@@ -50,6 +51,10 @@ export default class ElementQuery extends Component {
 
   componentDidMount () {
     ElementQuery.sizeComponent(this, this.state.sizes)
+    // wait a few frames then check sizes again
+    raf(() => raf(() => {
+      ElementQuery.sizeComponent(this, this.state.sizes)
+    }))
   }
 
   componentWillReceiveProps (newProps) {
@@ -60,9 +65,9 @@ export default class ElementQuery extends Component {
     ElementQuery.unregister(this)
   }
 
-static _isListening = false
+  static _isListening = false
 
-static _componentMap = new Map()
+  static _componentMap = new Map()
 
   // use only one global listener … for perf!
   static listen () {
@@ -110,6 +115,7 @@ static _componentMap = new Map()
     let matchedSize = ''
     let matchedWidth = smallestSize.width
 
+    // use Array#some() here because #forEach() has no early exit
     sizes.some((test) => {
       // check for:
       // 1. the el width is greater or equal to the test width
@@ -117,11 +123,10 @@ static _componentMap = new Map()
       if (width >= test.width && width >= matchedWidth) {
         matchedSize = test.name
         matchedWidth = test.width
+        return false
       }
       // once that condition isn't true, we've found the correct match; bail
-      else {
-        return true
-      }
+      return true
     })
     component.setSize(matchedSize)
   }
