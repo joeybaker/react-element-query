@@ -1,7 +1,8 @@
 language: node_js
+# run
 node_js:
+  # 4 is LTS
   - "4"
-  - "5"
   - "stable"
 
 script:
