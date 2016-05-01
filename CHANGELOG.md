@@ -1,5 +1,14 @@
 # Changelog
 
+## v2.0.2 | 2016-05-01
+* Fix: after first browser render, check sizes again. This should ensure the
+first render actually sets sizes.
+* Internal: run tests against LTS and Stable only
+* Internal: Travis CI: fix browser tests
+* Internal: switch to separate updated lodash packages
+* Internal: bump eslint and pure-render-decorator deps
+* Internal: fix typo in the ElementQuery import
+
 ## v2.0.1 | 2015-12-03
 * fix: Children merge classNames, not replace
 * internal: update nsp
@@ -27,6 +36,7 @@ server-side rendering. Use the `default` prop or just "mobile-first" CSS.
 
 ## v1.0.0 | 2015-07-09
 Init
+
 
 
 
