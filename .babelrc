@@ -1,6 +1,14 @@
 {
+  "presets": [
+    "latest",
+    "react"
+  ],
   "plugins": [
-    "closure-elimination"
-  ]
-  , "stage": 0
+    "add-module-exports",
+    "transform-object-rest-spread",
+    "transform-undefined-to-void",
+    "transform-decorators-legacy",
+    "transform-class-properties"
+  ],
+  "sourceMaps": "inline"
 }

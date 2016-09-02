@@ -17,3 +17,4 @@ node_modules
 .yo-rc.json
 test/temp
 *.es5
+.cache

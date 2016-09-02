@@ -10,23 +10,25 @@ This component is performant, and works on both the server and the client.
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
 
-  - [Install](#install)
-    - [React 0.13](#react-013)
-  - [Usage](#usage)
-- [I have a `.small` when over 150px and `.large` when over 300px](#i-have-a-small-when-over-150px-and-large-when-over-300px)
-  - [Props](#props)
-    - [`<Array> sizes` **Required**](#array-sizes-required)
-    - [`<Function> makeClassName`](#function-makeclassname)
-    - [`<String> default`](#string-default)
-  - [Methods](#methods)
-    - [`static` ElementQuery.register `(<React Element> element, <Array> sizes[, <Function> onResize])`](#static-elementqueryregister-react-element-element-array-sizes-function-onresize)
-    - [`static` ElementQuery.unregister `(<React Element> element)`](#static-elementqueryunregister-react-element-element)
-    - [`static` ElementQuery.listen()](#static-elementquerylisten)
-    - [`static` ElementQuery.unregister()](#static-elementqueryunregister)
-  - [Developing](#developing)
-    - [Requirements](#requirements)
-    - [Tests](#tests)
-  - [License](#license)
+- [Install](#install)
+  - [React 15](#react-15)
+  - [React 0.14](#react-014)
+  - [React 0.13](#react-013)
+- [Usage](#usage)
+- [Props](#props)
+  - [`<Array> sizes` **Required**](#array-sizes-required)
+  - [`<Function> makeClassName`](#function-makeclassname)
+  - [`<String> default`](#string-default)
+  - [`<Node> children`](#node-children)
+- [Methods](#methods)
+  - [`static` ElementQuery.register `({component: <React Element> element, sizes: <Array>, node: <DOMNode>[, onResize:  <Function>]})`](#static-elementqueryregister-component-react-element-element-sizes-array-node-domnode-onresize--function)
+  - [`static` ElementQuery.unregister `(<React Element> element)`](#static-elementqueryunregister-react-element-element)
+  - [`static` ElementQuery.listen()](#static-elementquerylisten)
+  - [`static` ElementQuery.unregister()](#static-elementqueryunregister)
+- [Developing](#developing)
+  - [Requirements](#requirements)
+  - [Tests](#tests)
+- [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -36,8 +38,22 @@ This component is performant, and works on both the server and the client.
 npm i -S react-element-query
 ```
 
+### React 15
+Version 3.0 supports React 15.
+
+```sh
+npm i -S react-element-query@3
+```
+
+### React 0.14
+Version 2.0 supports React 0.14.
+
+```sh
+npm i -S react-element-query@2
+```
+
 ### React 0.13
-Version 2.0 and greater supports React 0.14. If you need react 0.13 compatibility, install version 1.x.
+If you need react 0.13 compatibility, install version 1.x.
 
 ```sh
 npm i -S react-element-query@1
@@ -66,8 +82,14 @@ Takes the `name` for the matched size and returns a different classname. Useful 
 ### `<String> default`
 The server has no way to know the browser window width, and therefore, can't calculate the element width, so by default, it assumes there is no element query class applied. If you'd like to set a different default, pass a size name. Defaults to `''`.
 
+### `<Node> children`
+The child that will get the element query magic. A few caveats:
+
+* This _must_ be a single child
+* This _must_ be a valid DOM element. e.g. `<div />` not `<MyComponent />`
+
 ## Methods
-### `static` ElementQuery.register `(<React Element> element, <Array> sizes[, <Function> onResize])`
+### `static` ElementQuery.register `({component: <React Element> element, sizes: <Array>, node: <DOMNode>[, onResize:  <Function>]})`
 Allows you to use the ElementQuery throttled resize event for your own purposes. This allows you to have only one resize listener attached over your whole app.
 
 `onResize` is an optional callback so that is called with the arguments: `<React Element> element, <Array> sizes`. If not defined, the default behavior is used.
