@@ -1,5 +1,8 @@
 # Changelog
 
+## v3.0.1 | 2016-09-02
+* Fix correct onResize method signature #oops
+
 ## v3.0.0 | 2016-09-02
 BREAKING CHANGES:
 
@@ -42,6 +45,7 @@ server-side rendering. Use the `default` prop or just "mobile-first" CSS.
 
 ## v1.0.0 | 2015-07-09
 Init
+
 
 
 
