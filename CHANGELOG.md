@@ -1,5 +1,11 @@
 # Changelog
 
+## v3.0.0 | 2016-09-02
+BREAKING CHANGES:
+
+* now require react 15 as a peer depencency
+* child must be a valid DOM node not a react component
+
 ## v2.0.2 | 2016-05-01
 * Fix: after first browser render, check sizes again. This should ensure the
 first render actually sets sizes.
@@ -36,6 +42,7 @@ server-side rendering. Use the `default` prop or just "mobile-first" CSS.
 
 ## v1.0.0 | 2015-07-09
 Init
+
 
 
 
