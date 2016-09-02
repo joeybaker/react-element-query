@@ -115,7 +115,10 @@ export default class ElementQuery extends Component {
 
   static sizeComponents () {
     ElementQuery._componentMap.forEach((componentOptions, component) => {
-      componentOptions.onResize(component, componentOptions.sizes)
+      componentOptions.onResize({component
+        , sizes: componentOptions.sizes
+        , node: componentOptions.node
+      })
     })
   }
 
