@@ -24,7 +24,7 @@
     "test-server": "babel-tape-runner test/server.jsx | tap-spec",
     "tdd-server": "nodemon -x npm -i node_modules/ -e js,jsx -- run -s test-server",
     "tdd-browser": "mkdir -p .cache; mkdir -p .cache/test; touch .cache/test/browser.js 2> /dev/null; watchify test/browser.jsx --transform babelify --external react/addons --external react/lib/ReactContext --external react/lib/ExecutionEnvironment --debug --outfile .cache/test/browser.js & devtool --watch .cache/test/browser.js --console --browser-field --no-node-timers --show .cache/test/browser.js | faucet",
-    "watch": "babel index.js --watch --out-file index.js",
+    "watch": "babel src --watch --out-dir dist",
     "note1": "we can't have nice things. prepublish also runs on npm install https://github.com/npm/npm/issues/6394 in-publish hacks around this",
     "prepublish": "in-publish && npm prune && npm run -s gitPush || in-install",
     "note2": "eslint will always pull from the global eslintrc file, disable that so that we're only looking at the local",
@@ -39,7 +39,7 @@
     "doctoc": "doctoc README.md && if [ -f CONTRIBUTING.md ]; then doctoc CONTRIBUTING.md; fi && if [[ $(git diff --shortstat -- README.md 2> /dev/null | tail -n1) != '' || $(git diff --shortstat -- CONTRIBUTING.md 2> /dev/null | tail -n1) != '' ]]; then git add README.md CONTRIBUTING.md && git commit --no-verify -m'table of contents update'; fi",
     "gitPull": "git pull --rebase origin master",
     "gitPush": "git push --follow-tags --no-verify && git push --tags --no-verify",
-    "build": "NODE_ENV=production && babel index.jsx > index.js",
+    "build": "NODE_ENV=production && babel src --out-dir dist",
     "release": "f () { source ./scripts.sh && npm run requireGitClean && npm run gitPull && npm run dmn && npm run doctoc && npm run build && npm run lint && npm test && npm_release public $@; }; f"
   },
   "config": {
@@ -50,8 +50,8 @@
       "update": "PATH=$PATH:/usr/local/bin:/usr/local/sbin && npm install"
     }
   },
-  "main": "index.js",
-  "browser": "index.js",
+  "main": "dist/index.js",
+  "browser": "dist/index.js",
   "devDependencies": {
     "babel-cli": "^6.14.0",
     "babel-eslint": "^6.1.2",
