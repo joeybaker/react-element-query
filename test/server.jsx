@@ -1,5 +1,5 @@
 import test from 'tape'
-import ElementQuery from '../index.jsx'
+import ElementQuery from '../src/index.jsx'
 import React from 'react'
 import {renderToString} from 'react-dom/server'
 
