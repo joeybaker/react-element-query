@@ -1,5 +1,10 @@
 # Changelog
 
+## v3.0.2 | 2016-11-16
+* Chore(build) files are now split between `dist` and `src`. This means that
+the files are no longer `.jsx` which allows flowtype to work correctly. #12.
+Fixed by @madole in #13
+
 ## v3.0.1 | 2016-09-02
 * Fix correct onResize method signature #oops
 
@@ -45,6 +50,7 @@ server-side rendering. Use the `default` prop or just "mobile-first" CSS.
 
 ## v1.0.0 | 2015-07-09
 Init
+
 
 
 
