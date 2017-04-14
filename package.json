@@ -20,7 +20,7 @@
   "scripts": {
     "start": "f () { node dev.js ${@-example} | garnish; }; f",
     "test": "npm run -s test-server && npm run -s test-browser",
-    "test-browser": "browserify -t babelify test/browser.jsx --external react/addons --external react/lib/ReactContext --external react/lib/ExecutionEnvironment | tap-closer | smokestack | tap-spec",
+    "test-browser": "browserify -t babelify test/browser.jsx --external react/addons --external react/lib/ReactContext --external react/lib/ExecutionEnvironment | tap-closer | smokestack -b firefox | tap-spec",
     "test-server": "babel-tape-runner test/server.jsx | tap-spec",
     "tdd-server": "nodemon -x npm -i node_modules/ -e js,jsx -- run -s test-server",
     "tdd-browser": "mkdir -p .cache; mkdir -p .cache/test; touch .cache/test/browser.js 2> /dev/null; watchify test/browser.jsx --transform babelify --external react/addons --external react/lib/ReactContext --external react/lib/ExecutionEnvironment --debug --outfile .cache/test/browser.js & devtool --watch .cache/test/browser.js --console --browser-field --no-node-timers --show .cache/test/browser.js | faucet",
