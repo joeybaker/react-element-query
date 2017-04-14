@@ -1,16 +1,15 @@
-import React, {PropTypes, Component, Children, cloneElement} from 'react'
+import React, {PureComponent, Children, cloneElement} from 'react'
+import PropTypes from 'proptypes'
 import identity from 'lodash.identity'
 import sortBy from 'lodash.sortby'
 import first from 'lodash.first'
 import isNumber from 'lodash.isnumber'
 import raf from 'raf'
-import pureRender from 'pure-render-decorator'
 import autobind from 'autobind-decorator'
 
 const isBrowser = typeof window !== 'undefined'
 
-@pureRender
-export default class ElementQuery extends Component {
+export default class ElementQuery extends PureComponent {
   static propTypes = {
     children: PropTypes.node.isRequired
     , default: PropTypes.string
