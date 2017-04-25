@@ -102,7 +102,7 @@
     "lodash.identity": "^3.0.0",
     "lodash.isnumber": "^3.0.3",
     "lodash.sortby": "^4.7.0",
-    "proptypes": "^0.14.4",
+    "proptypes": "^1.0.0",
     "raf": "^3.3.0"
   }
 }
