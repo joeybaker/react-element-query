@@ -45,6 +45,8 @@ export default class ElementQuery extends PureComponent {
   }
 
   componentDidMount () {
+    this._isMounted = true
+
     ElementQuery.register({
       component: this
       , sizes: this.state.sizes
@@ -59,11 +61,13 @@ export default class ElementQuery extends PureComponent {
 
     // wait a few frames then check sizes again
     raf(() => raf(() => {
-      ElementQuery.sizeComponent({
-        component: this
-        , sizes: this.state.sizes
-        , node: this.node
-      })
+      if (this._isMounted) {
+        ElementQuery.sizeComponent({
+          component: this
+          , sizes: this.state.sizes
+          , node: this.node
+        })
+      }
     }))
   }
 
@@ -72,6 +76,7 @@ export default class ElementQuery extends PureComponent {
   }
 
   componentWillUnmount () {
+    this._isMounted = false
     ElementQuery.unregister(this)
   }
 
