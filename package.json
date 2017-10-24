@@ -63,7 +63,7 @@
     "babel-preset-latest": "^6.14.0",
     "babel-preset-react": "^6.11.1",
     "babel-tape-runner": "^2.0.1",
-    "babelify": "^7.3.0",
+    "babelify": "^8.0.0",
     "browserify": "^14.0.0",
     "devtool": "^2.2.0",
     "dmn": "^1.0.5",
