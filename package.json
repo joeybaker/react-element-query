@@ -72,7 +72,7 @@
     "eslint": "^4.1.1",
     "eslint-plugin-react": "^7.1.0",
     "faucet": "0.0.1",
-    "ghooks": "^1.3.2",
+    "ghooks": "^2.0.1",
     "hihat": "^2.6.4",
     "in-publish": "^2.0.0",
     "nodemon": "^1.10.2",
