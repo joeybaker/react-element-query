@@ -39,7 +39,7 @@
     "doctoc": "doctoc README.md && if [ -f CONTRIBUTING.md ]; then doctoc CONTRIBUTING.md; fi && if [[ $(git diff --shortstat -- README.md 2> /dev/null | tail -n1) != '' || $(git diff --shortstat -- CONTRIBUTING.md 2> /dev/null | tail -n1) != '' ]]; then git add README.md CONTRIBUTING.md && git commit --no-verify -m'table of contents update'; fi",
     "gitPull": "git pull --rebase origin master",
     "gitPush": "git push --follow-tags --no-verify && git push --tags --no-verify",
-    "build": "NODE_ENV=production && babel src --out-dir dist",
+    "build": "cross-env NODE_ENV=production && babel src --out-dir dist",
     "release": "f () { source ./scripts.sh && npm run requireGitClean && npm run gitPull && npm run dmn && npm run doctoc && npm run build && npm run lint && npm test && npm_release public $@; }; f"
   },
   "config": {
@@ -65,6 +65,7 @@
     "babel-tape-runner": "^2.0.1",
     "babelify": "^7.3.0",
     "browserify": "^14.0.0",
+    "cross-env": "^5.1.1",
     "devtool": "^2.2.0",
     "dmn": "^1.0.5",
     "doctoc": "^1.2.0",
