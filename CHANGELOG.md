@@ -1,5 +1,24 @@
 # Changelog
 
+## v3.0.3 | 2017-12-18
+* Feat switch to PureComponent and proptypes
+* fix(package): update autobind-decorator to version 2.0.0
+* fix(package): update proptypes to version 1.0.0
+* chore(package): update sinon to version 3.0.0
+* Chore(eslint) rm deprecated property
+* chore(package): update eslint to version 4.1.1
+* Chore(eslint) update for deprecated rule
+* chore(package): update eslint-plugin-react to version 7.1.0
+* chore(package): update babel-eslint to version 7.2.3
+* Chore(CI) switch back to firefox
+* Chore(deps) upgrade deps and add yarn
+* Chore(deps) rm pureRender and add proptypes
+* Chore switch to testing in Chrome
+* Chore(deps) install prop-types
+* chore(package): update sinon to version 2.0.0
+* chore(package): update browserify to version 14.0.0
+* chore(package): update dependencies
+
 ## v3.0.2 | 2016-11-16
 * Chore(build) files are now split between `dist` and `src`. This means that
 the files are no longer `.jsx` which allows flowtype to work correctly. #12.
@@ -50,6 +69,7 @@ server-side rendering. Use the `default` prop or just "mobile-first" CSS.
 
 ## v1.0.0 | 2015-07-09
 Init
+
 
 
 
