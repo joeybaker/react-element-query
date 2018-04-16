@@ -82,7 +82,7 @@
     "react": "^15.5.4",
     "react-a11y": "^0.3.3",
     "react-addons-test-utils": "^15.3.1",
-    "react-dom": "^15.5.4",
+    "react-dom": "^16.3.2",
     "react-test-renderer": "^15.5.4",
     "sinon": "^3.0.0",
     "smokestack": "^3.2.0",
