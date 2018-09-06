@@ -69,7 +69,7 @@
     "devtool": "^2.2.0",
     "dmn": "^1.0.5",
     "doctoc": "^1.2.0",
-    "enzyme": "^2.8.2",
+    "enzyme": "^3.6.0",
     "eslint": "^4.1.1",
     "eslint-plugin-react": "^7.1.0",
     "faucet": "0.0.1",
