@@ -78,7 +78,7 @@
     "in-publish": "^2.0.0",
     "nodemon": "^1.10.2",
     "nsp": "^2.6.1",
-    "prop-types": "^15.5.8",
+    "prop-types": "^15.7.2",
     "react": "^15.5.4",
     "react-a11y": "^0.3.3",
     "react-addons-test-utils": "^15.3.1",
