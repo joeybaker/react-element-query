@@ -84,7 +84,7 @@
     "react-addons-test-utils": "^15.3.1",
     "react-dom": "^15.5.4",
     "react-test-renderer": "^15.5.4",
-    "sinon": "^3.0.0",
+    "sinon": "^8.0.1",
     "smokestack": "^3.2.0",
     "smokestack-watch": "^0.4.1",
     "tap-closer": "^1.0.0",
